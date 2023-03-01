@@ -3,10 +3,7 @@
   <head>
     <title>{{0.title_site}}</title>
     <style type="text/css">
-
       body { background-color: #fff; }
-
-
     </style>
   </head>
   <body>
@@ -38,15 +35,26 @@
     </nav>
 
 <div class="container">
-  {% block container %} {% endblock %}
+  {% block container %}
+
+  {% endblock %}
 </div>
 <div class="departure">
-  {% block departure %} {% endblock %}
+  {% block departure %}
+  {% endblock %}
 </div>
 <div class="tour">
-  {% block tour %} {% endblock %}
+  {% block tour %}
+  {% endblock %}
 </div>
-
+<div class="hotel">
+  {% block hotel %}
+  {% endblock %}
+</div>
+<div class="card">
+  {% block card %}
+  {% endblock %}
+</div>
 </div>
 
 </body>

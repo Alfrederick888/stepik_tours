@@ -8,16 +8,18 @@
     </div>
 
     <!-- CARDS -->
+{% block card %}
     <div class="row mt-5" data-test="cards">
+
         <div class="col-4" data-test="card">
-            <div class="card mb-3" >
+          <div class="card mb-3" >
             <img src="{{ 1.picture }}" class="card-img-top img-fluid" data-test="picture">
             <div class="card-body">
               <h5 class="card-title">{{1.title}}</h5>
               <p class="card-text">{{1.description}}</p>
-              <a href="" class="btn btn-sm btn-info" data-test="tourlink">Подробнее</a>
+              <a href="{% url 'hotel' %}" class="btn btn-sm btn-info" data-test="tourlink">Подробнее</a>
             </div>
-        </div>
+          </div>
         </div>
 
         <div class="col-4" data-test="card">
@@ -63,7 +65,6 @@
             </div>
         </div>
         </div>
-
         <div class="col-4" data-test="card">
             <div class="card mb-3">
             <img src="{{ 6.picture }}" class="card-img-top img-fluid" data-test="picture">
@@ -75,5 +76,6 @@
         </div>
         </div>
     </div>
+{% endblock %}
 </body>
 {% endblock %}

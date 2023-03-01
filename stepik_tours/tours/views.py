@@ -228,3 +228,12 @@ class KazanView(View):
 class TourView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'tours/tour.html', context=context)
+
+class HotelView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'tours/hotel.html', context=context)
+
+class CardView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'tours/card.html', context=context)
+

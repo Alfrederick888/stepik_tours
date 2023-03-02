@@ -1,44 +1,26 @@
 {% extends 'tours/base.html' %}
-{% block departure %}
-<body>
-    <h1 class="display-5 mt-4">Летим из <span data-test="from">Москвы</span></h1>
-    <p class="mb-4" >Найдено <span data-test="tourcount">3</span> тура, от <span data-test="pricemin">52000</span> до <span data-test="pricemax">68000</span> и от <span data-test="nightsmax">8</span> ночей до <span data-test="nightsmax">10</span> ночей</p>
-    <!-- HERO -->
+{% block container %}
+    <h1 class="display-5 mt-4">Летим из <span data-test="from">Новосибирска</span></h1>
+    <p class="mb-4" >Найдено <span data-test="tourcount">15</span> туров, от <span data-test="pricemin">26000</span> до <span data-test="pricemax">84600</span> и от <span data-test="nightsmax">4</span> ночей до <span data-test="nightsmax">15</span> ночей</p>
 
     <!-- CARDS -->
 
-      <div class="row mt-5" data-test="cards">
-        <div class="col-4" data-test="card">
-            <div class="card mb-3" >
-            <img src="{{ 10.picture }}" class="card-img-top img-fluid" data-test="picture">
+<div class="row mt-5" data-test="cards">
+{% for index, value in tours.items %}
+    {% if 'msk' in index == value %}
+    <div class="col-4" data-test="card">
+        <div class="card mb-3" >
+            <img src="{{ value.picture }}" class="card-img-top img-fluid" data-test="picture">
             <div class="card-body">
-              <h5 class="card-title">{{ 10.title }}</h5>
-              <p class="card-text">{{ 10.description }}</p>
-              <a href="{% url 'tour' %}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+                <h5 class="card-title">{{ tours.departure }}</h5>
+                <p class="card-text"></p>
+                <a href="{% url 'tour' %}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
             </div>
-        </div>
-        </div>
-        <div class="col-4" data-test="card">
-            <div class="card mb-3" >
-            <img src="{{ 4.picture }}" class="card-img-top img-fluid" data-test="picture">
-            <div class="card-body">
-              <h5 class="card-title">{{ 4.title }}</h5>
-              <p class="card-text">{{ 4.description }}</p>
-              <a href="" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
-            </div>
-        </div>
-        </div>
-
-        <div class="col-4" data-test="card">
-            <div class="card mb-3" >
-            <img src="{{ 5.picture }}" class="card-img-top img-fluid" data-test="picture">
-            <div class="card-body">
-             <h5 class="card-title">{{ 5.title }}</h5>
-             <p class="card-text">{{ 5.description }}</p>
-             <a href="" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
-            </div>
-        </div>
         </div>
     </div>
-</body>
+    {% else %}
+    Туров нет
+    {% endif %}
+{% endfor %}
+</div>
 {% endblock %}

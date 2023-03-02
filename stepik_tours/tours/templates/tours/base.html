@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{0.title_site}}</title>
-    <style type="text/css">
-      body { background-color: #fff; }
-    </style>
-  </head>
-  <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ 0.title_site }}</title>
+    <title>Stepik Travel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -23,41 +14,42 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      {% for c in 0.city %}
+      {% for city in departures %}
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav" data-test="navigation">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url c.url_name %}" data-test="navlink">{{ c.title }}</a>
+            <a class="nav-link" href="{% url 'departure' %}" data-test="navlink">{{ city.title }}</a>
           </li>
+      {% endfor %}
         </ul>
       </div>
-      {% endfor %}
     </nav>
 
-<div class="container">
-  {% block container %}
+    <!-- HERO -->
+{% block container %}
+    <div class="jumbotron text-center mt-4">
+      <h1 class="display-4">Всякие туры</h1>
+      <p class="lead">{{ subtitle }}</p>
+      <p class="mt-5 w-50 mx-auto">{{ shapka.description }}</p>
+    </div>
 
-  {% endblock %}
-</div>
-<div class="departure">
-  {% block departure %}
-  {% endblock %}
-</div>
-<div class="tour">
-  {% block tour %}
-  {% endblock %}
-</div>
-<div class="hotel">
-  {% block hotel %}
-  {% endblock %}
-</div>
-<div class="card">
-  {% block card %}
-  {% endblock %}
-</div>
-</div>
+    <!-- CARDS -->
 
+<div class="row mt-5" data-test="cards">
+{% for index, value in tours.items %}
+    <div class="col-4" data-test="card">
+        <div class="card mb-3" >
+            <img src="{{ value.picture }}" class="card-img-top img-fluid" data-test="picture">
+            <div class="card-body">
+                <h5 class="card-title">{{ value.title }}</h5>
+                <p class="card-text">{{ value.description }}</p>
+                <a href="{% url 'tour' %}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
 </body>
 </html>
-  </body>
-</html>
+
+{% endblock %}

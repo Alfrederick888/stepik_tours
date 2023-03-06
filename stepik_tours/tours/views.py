@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+
 shapka = {
     'title': 'Stepik Travel',
     'subtitle': 'Для тех, кто хочет на удаленку',
@@ -201,14 +202,34 @@ tours = {
     }
 }
 
+count_tours = {
+    'count_msk': 0,
+    'count_spb': 0,
+    'count_nsk': 0,
+    'count_ekb': 0,
+    'count_kazan': 0
+}
+
+for i in range(1, 17):
+    if tours[i]['departure'] == 'msk':
+        count_tours['count_msk'] += 1
+    if tours[i]['departure'] == 'spb':
+        count_tours['count_spb'] += 1
+    if tours[i]['departure'] == 'nsk':
+        count_tours['count_nsk'] += 1
+    if tours[i]['departure'] == 'ekb':
+        count_tours['count_ekb'] += 1
+    if tours[i]['departure'] == 'kazan':
+        count_tours['count_kazan'] += 1
+
 class MainView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'tours/base.html', {'shapka': shapka, 'departures': departures, 'tours': tours})
+        return render(request, 'tours/base.html', {'shapka': shapka, 'departures': departures, 'tours': tours, 'count_tours': count_tours})
 
 class DepartureView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'tours/departure.html', {'shapka': shapka, 'departures': departures, 'tours': tours})
+        return render(request, 'tours/departure.html', {'shapka': shapka, 'departures': departures, 'tours': tours, 'count_tours': count_tours})
 
 class TourView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'tours/tour.html', {'shapka': shapka, 'departures': departures, 'tours': tours})
+        return render(request, 'tours/tour.html', {'shapka': shapka, 'departures': departures, 'tours': tours, 'count_tours': count_tours})

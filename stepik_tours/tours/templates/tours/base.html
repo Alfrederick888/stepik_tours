@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav" data-test="navigation">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'departure' %}" data-test="navlink">{{ city.title }}</a>
+            <a class="nav-link" href="{% url city.url_name %}" data-test="navlink">{{ city.title }}</a>
           </li>
       {% endfor %}
         </ul>

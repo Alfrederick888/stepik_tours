@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
+from django.db.models import Max, Min
 
 shapka = {
     'title': 'Stepik Travel',
@@ -11,10 +12,10 @@ shapka = {
 
 departures = [
     {"title": "Из Москвы", 'url_name': 'departure'},
-    {"title": "Из Петербурга", 'url_name': 'departure'},
-    {"title": "Из Новосибирска", 'url_name': 'departure'},
-    {"title": "Из Екатеринбурга", 'url_name': 'departure'},
-    {"title": "Из Казани", 'url_name': 'departure'}
+    {"title": "Из Петербурга", 'url_name': 'spb'},
+    {"title": "Из Новосибирска", 'url_name': 'nsk'},
+    {"title": "Из Екатеринбурга", 'url_name': 'ekb'},
+    {"title": "Из Казани", 'url_name': 'kazan'}
 ]
 
 tours = {
@@ -224,12 +225,71 @@ for i in range(1, 17):
 
 class MainView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'tours/base.html', {'shapka': shapka, 'departures': departures, 'tours': tours, 'count_tours': count_tours})
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/base.html', context=context)
 
 class DepartureView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'tours/departure.html', {'shapka': shapka, 'departures': departures, 'tours': tours, 'count_tours': count_tours})
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/departure.html', context=context)
 
 class TourView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'tours/tour.html', {'shapka': shapka, 'departures': departures, 'tours': tours, 'count_tours': count_tours})
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/tour.html', context=context)
+
+class SpbView(View):
+    def get(self, request, *args, **kwargs):
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/spb.html', context=context)
+
+
+class NskView(View):
+    def get(self, request, *args, **kwargs):
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/nsk.html', context=context)
+
+class EkbView(View):
+    def get(self, request, *args, **kwargs):
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/ekb.html', context=context)
+
+class KazanView(View):
+    def get(self, request, *args, **kwargs):
+        context = {
+            'shapka': shapka,
+            'departures': departures,
+            'tours': tours,
+            'count_tours': count_tours
+        }
+        return render(request, 'tours/kazan.html', context=context)
